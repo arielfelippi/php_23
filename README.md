@@ -1,4 +1,7 @@
 # php_23
+## Primeiro commit 31/01/2023.
+### Testando as modificacoes.
+### Testando as modificacoes.3333333
     1 - Verificar se estamos no ubuntu
     2 - File -> open folder
     2.1 - apaga o conteudo
@@ -19,15 +22,5 @@
     2 - git commit -m "DESCREVER O QUE FOI FEITO"
     3 - git push
     4 - verificar no github se ficou salvo.
-
-
-
-
-
-
-
-
-
-
 
 
