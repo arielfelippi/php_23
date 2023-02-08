@@ -23,4 +23,28 @@
     3 - git push
     4 - verificar no github se ficou salvo.
 
+## Para o merge
+    1 - git checkout NOME_BRANCH_DESEJA_IR
+    2 - git pull (obter as atualizacoes)
+    3 - git merge NOME_BRANCH_DA_TRAZER_AS_MUDANCAS
+
+    Ex.:
+        Estamos na branch *develop* e queremos levar as mudancas para a master/main
+            1 - git checkout *master*
+            2 - git pull (master)
+            3 - git merge *develop*
+            4 - resolve conflitos se houver
+            4.1 - Com conflito: git add . e git commit -m "..."
+            4.2 - Sem conflito:  so executar o push
+            5 - git push
+
+        Estamos na branch *master/main* e queremos levar as mudancas para a develop
+            1 - git checkout *develop*
+            2 - git pull (develop)
+            3 - git merge *master*
+            4 - resolve conflitos se houver
+            4.1 - Com conflito: git add . e git commit -m "..."
+            4.2 - Sem conflito:  so executar o push
+            5 - git push
+
 
