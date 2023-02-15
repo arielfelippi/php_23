@@ -48,3 +48,49 @@
             5 - git push
 
 
+CRIAR AS TABELAS
+
+
+TABELA DE Pessoas
+idade
+telefone
+endereco
+aniversario
+
+
+TABELA DE USUARIOS
+id 
+nome_usuario
+email
+senha
+nome_completo
+
+id_perfil  - (FK - Foreign Key)
+setor (financeiro)
+cargo
+status - NOK
+data_ultimo_acesso - NOK
+data_criacao - NOK
+usuario_alteracao (tinyINT)
+data_alteracao - NOK
+
+
+
+
+
+
+
+TABELA DE PERFIL
+id
+perfil
+descricao
+status - NOK
+data_ultimo_acesso - NOK
+data_criacao - NOK
+usuario_alteracao (tinyINT)
+data_alteracao - NOK
+
+
+
+
+
