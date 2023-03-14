@@ -51,46 +51,52 @@
 CRIAR AS TABELAS
 
 
-TABELA DE Pessoas
-idade
-telefone
-endereco
-aniversario
+    TABELA rh
+    id PK AUTOINCREMENT NOT NULL
+        id_pessoa (fk) = null
+        salario
+    log_first datetime DEFAULT CURRENTTIMESTAMP,
+    log_last datetime DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENTTIMESTAMP,
 
 
-TABELA DE USUARIOS
-id 
-nome_usuario
-email
-senha
-nome_completo
-
-id_perfil  - (FK - Foreign Key)
-setor (financeiro)
-cargo
-status - NOK
-data_ultimo_acesso - NOK
-data_criacao - NOK
-usuario_alteracao (tinyINT)
-data_alteracao - NOK
-
+    TABELA pesssoas|people 
+    id PK AUTOINCREMENT NOT NULL (fk = id_pessoas nas outras tabelas)
+    user_id (fk) = null
+    endereco (fk) = null
+    cpf = null
+    cnpj = null
+    telefone = null
+    nacionalidade * (NOT NULL)
+    estado_civil = null
+    cnae = null
+    data_abertura_empresa = null
+    genero = null
+    etnia = null
+    inscricao_estadual = null
 
 
+    TABELA enderecos
+    id_estado (fk) = null
+    id_cidade (fk) = null
+    rua
+    bairro
+    numero
+    complemento
+    cep
+    referencia
 
 
+    TABELA estados
+    nome
+    sigla
 
 
-TABELA DE PERFIL
-id
-perfil
-descricao
-status - NOK
-data_ultimo_acesso - NOK
-data_criacao - NOK
-usuario_alteracao (tinyINT)
-data_alteracao - NOK
-
-
+    TABELA cidade 
+    nome
+    populacao
+    densidade_demografica
+    renda_per_capita
+    ultimo_senso
 
 
 
