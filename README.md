@@ -55,8 +55,8 @@ CRIAR AS TABELAS
     id PK AUTOINCREMENT NOT NULL
         id_pessoa (fk) = null
         salario
-    log_first datetime DEFAULT CURRENTTIMESTAMP,
-    log_last datetime DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENTTIMESTAMP,
+    log_first datetime DEFAULT CURRENT_TIMESTAMP(),
+    log_last datetime DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP(),
 
 
     TABELA pesssoas|people 
