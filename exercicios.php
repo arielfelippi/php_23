@@ -151,7 +151,45 @@ for ($numero = 1; $numero <= 10; $numero++)
 
 echo "Os 3 primeiros numeros primos (1 - 10) são: {$primos}!<br>";
 
+/*
+- tenho que ir de 20 - 30 - OK
+- tenho que encontrar os 3 primeiros primos (limitador)
+- tenho que saber quando um numero e primo
+- 
+- como que faco de 1 a 10 (laco de repeticao)
+- manual 1, 2, 3, 4, 5...  $cont = 1 + $cont;
+- limitador, em algum momento parar a execucao if ($contPrimos == 3) { break; return; }
+- 
+*/
+
+// Intervalo para analisar de 20 até 30. Primos: 23, 29.
+
+$contPrimos = 0;
+$primosEncontrados = "";
 
 
+for ($numero = 20; $numero <= 30; $numero++) { // 20, 21 ... 30
+    echo $numero . "<br>"; // 20, 21, 22, 2, 24, 25 ... 30
 
+    $contDivisores = 0; // Conta quantos divisores existem no intervalo de 1 até o numero analisado, ex.: 25 tem 3 divisores, o 1, 5 e o 25.
+
+    for ($primo = 1 ; $primo <= $numero; $primo++) {  
+        $resto = ($numero % $primo);// se existir + de 2 divisoes exata no meio do caminho nao é primo.
+
+        if ($resto == 0) {
+            $contDivisores ++; // 1 + 1
+        }
+    }
+
+    if ($contDivisores == 2) {
+        $primosEncontrados .= $numero . ", "; // 2, 3, 5, 7... 
+        $contPrimos++;
+    }
+
+    if ($contPrimos == 3) {
+        break; // para o laco de repeticao quando econtrados os 3 primeiros primos.
+    }
+}
+
+echo "Os numeros primos encontrados sao: " . $primosEncontrados;
 
