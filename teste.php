@@ -19,7 +19,10 @@
 // 1h = 60m
 // 1h = 3600s
 
-$horaInicial = "12:20:30";
+$horaInicial = "16:00:00";
+$horaFinal = "17:30:30";
+
+
 $arrTempoInicial = explode(":", $horaInicial);
 
 $horaIni = $arrTempoInicial[0]; // 12
@@ -32,12 +35,15 @@ $minutosEmSegundos = ($minIni); // efetuar calculo que transforma minutos em seg
 $tempoIniEmSegundos = $horaEmSegundos + $minutosEmSegundos + $segIni; // tudo na mesma medida.
 
 
-$horaFinal = "13:50:32";
+
 $arrTempoFinal = explode(":", $horaFinal);
 
 $tempoDeJogo = Datetime($horaFinal) - Datetime($horaInicial); // 156456461645415
 
-echo $tempoDeJogo; // "01:30:02"
+
+
+echo $tempoDeJogo; // "O jogo teve duracao de: 01:30:00" e em minutos foram 90 minutos.
+// echo $tempoDeJogo; // "O jogo teve duracao de: 01:30:30" e em minutos foram 90 e 30 segundos minutos.
 
 
 
