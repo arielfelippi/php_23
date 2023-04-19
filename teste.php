@@ -1,38 +1,50 @@
 <?php
 
-/* Encontrar os 3 primeiros numeros perfeitos.
-    6 = 1 + 2 + 3
-    28 = 1 + 2 + 4 + 7 + 14
-    496 = 1 + 2 + 4 + 8 + 16 + 31 + 62 + 124 + 248
-    ????????
+/*
+ 1º 45
+ 2º 45
+ Total 90 minutos
 */
 
-$perfeitosMax = 4;
-$contPerfeitos = 0;
-$numerosPerfeitos = "";
 
-for ($numero = 1; $numero <= 30; $numero++) { // 6 somente o 6 perfeito
+/**
+* 1-) Calcular a duracao de um jogo de futebol, através de duas variaveis,
+* sendo elas: $horaInicial e $horaFinal.
+*/ 
 
-    $somaDivisores = 0;
+// H:m:s
+// Transformar tudo em uma unica medida. Sugestao transformem em Segundos.
 
-    for ($divisor = 1; $divisor <= ($numero / 2); $divisor++) 
-    {
-        $resto = $numero % $divisor;
+// 1m = 60s 
+// 1h = 60m
+// 1h = 3600s
 
-        if ($resto == 0) {
-            $somaDivisores += $divisor;
-        }
-    }
+$horaInicial = "12:20:30";
+$arrTempoInicial = explode(":", $horaInicial);
 
-    if ($somaDivisores == $numero) {
-        $numerosPerfeitos .= $numero . ", ";
-        $contPerfeitos++;
-    }
+$horaIni = $arrTempoInicial[0]; // 12
+$minIni = $arrTempoInicial[1]; // 20
+$segIni = $arrTempoInicial[2]; // 30
 
-    if ($contPerfeitos == $perfeitosMax) { // 3
-        break;
-    }
-}
+$horaEmSegundos = ($horaIni); // efetuar calculo que transforma hora em segundos
+$minutosEmSegundos = ($minIni); // efetuar calculo que transforma minutos em segundos
 
-echo "Os numeros perfeitos de 1 - 500 sao: " . $numerosPerfeitos;
+$tempoIniEmSegundos = $horaEmSegundos + $minutosEmSegundos + $segIni; // tudo na mesma medida.
+
+
+$horaFinal = "13:50:32";
+$arrTempoFinal = explode(":", $horaFinal);
+
+$tempoDeJogo = Datetime($horaFinal) - Datetime($horaInicial); // 156456461645415
+
+echo $tempoDeJogo; // "01:30:02"
+
+
+
+
+
+/**
+* 2-) Calcular a duracao de um jogo de futebol (Utilizar a logica do exercicio 1), 
+* tendo em vista que um jogo pode comecar em um dia e terminar em outro. 
+*/ 
 
