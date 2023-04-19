@@ -48,7 +48,8 @@ echo $tempoDeJogo; // "O jogo teve duracao de: 01:30:00" e em minutos foram 90 m
 
 
 
-
+$horaInicial = "23:20:00";
+$horaFinal = "00:50:30";
 /**
 * 2-) Calcular a duracao de um jogo de futebol (Utilizar a logica do exercicio 1), 
 * tendo em vista que um jogo pode comecar em um dia e terminar em outro. 
