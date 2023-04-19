@@ -15,7 +15,7 @@ for ($numero = 1; $numero <= 30; $numero++) { // 6 somente o 6 perfeito
 
     $somaDivisores = 0;
 
-    for ($divisor = 1; $divisor < $numero; $divisor++) 
+    for ($divisor = 1; $divisor <= ($numero / 2); $divisor++) 
     {
         $resto = $numero % $divisor;
 
