@@ -113,13 +113,7 @@
 
 //     $condicoes[$daniel][$eduardo]; // ganha
 
-
-
-
-
 // */
-
-
 
 
 
