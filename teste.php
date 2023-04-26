@@ -32,11 +32,32 @@ $horaInicial = "23:20:00";
 $horaFinal = "00:55:00";
 
 
-$arrTempoInicial = explode(":", $horaInicial);
+$hora = 10;
+$hora = 20;
 
-$horaIni = $arrTempoInicial[0]; // 23
-$minIni = $arrTempoInicial[1]; // 20
-$segIni = $arrTempoInicial[2]; // 00
+echo $hora; // 20
+
+
+$hora; // nulo|indefinido - null|undefined
+$minutos;
+$segundos;
+
+// 00:00:00 - H:m:s 
+function quebrarHoraEmPartes($tempoEmHora) {
+    $arrTempo = explode(":", $tempoEmHora);
+
+    $hora = $arrTempo[0];
+    $minutos = $arrTempo[1];
+    $segundos = $arrTempo[2];
+}
+
+
+quebrarHoraEmPartes($horaInicial); // 13:30:00
+$dtFinal = quebrarHoraEmPartes($horaFinal); // 14:50:10
+
+echo $hora; // 14
+
+
 
 
 $horaEmSegundos = ($horaIni * 3600); // efetuar calculo que transforma hora em segundos
