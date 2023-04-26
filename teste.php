@@ -20,43 +20,62 @@
 // 1h = 60m
 // 1h = 3600s
 
-$horaInicial = "16:00:00";
-$horaFinal = "17:30:00";
+
+const SEGUNDOS_DIA = 86400;
+
+
+// $horaInicial = "16:00:00";
+// $horaFinal = "17:30:00";
+
+
+$horaInicial = "23:20:00";
+$horaFinal = "00:55:00";
 
 
 $arrTempoInicial = explode(":", $horaInicial);
 
-$horaIni = $arrTempoInicial[0]; // 16
-$minIni = $arrTempoInicial[1]; // 00
+$horaIni = $arrTempoInicial[0]; // 23
+$minIni = $arrTempoInicial[1]; // 20
 $segIni = $arrTempoInicial[2]; // 00
+
 
 $horaEmSegundos = ($horaIni * 3600); // efetuar calculo que transforma hora em segundos
 $minutosEmSegundos = ($minIni * 60); // efetuar calculo que transforma minutos em segundos
-
 $tempoIniEmSegundos = $horaEmSegundos + $minutosEmSegundos + $segIni; // tudo na mesma medida.
-// 57600 segundos
-
 
 
 
 $arrTempoFinal = explode(":", $horaFinal);
 
-$horaFin = $arrTempoFinal[0]; // 17
-$minFin = $arrTempoFinal[1]; // 30
+$horaFin = $arrTempoFinal[0]; // 00
+$minFin = $arrTempoFinal[1]; // 50
 $segFin = $arrTempoFinal[2]; // 00
 
 
 
-$horaEmSegundos = ($horaFin * 3600); // 61200   
-$minutosEmSegundos = ($minFin * 60); // 1800
+$horaEmSegundos = ($horaFin * 3600); // 00
+$minutosEmSegundos = ($minFin * 60); // 3000
 
 $tempoFinEmSegundos = $horaEmSegundos + $minutosEmSegundos + $segFin;
-// 63000
+// 3000
 
 
-//  
+// aqui a gente assume que comecou e terminou no mesmo dia.
 $tempoDeJogo = $tempoFinEmSegundos - $tempoIniEmSegundos;
-// 5400
+
+
+
+$tempoMaximo = $tempoFinEmSegundos + $tempoIniEmSegundos; // 87000
+$terminouNoOutroDia = $tempoMaximo > SEGUNDOS_DIA; // 86400 = segundos no dia
+
+
+if ($terminouNoOutroDia) {
+    $diff = $tempoMaximo - SEGUNDOS_DIA; // 600 diff a mais no dia, pós meia noite.
+    $posMeiaNoite = $tempoFinEmSegundos - $diff; // 2400
+    $tempoDeJogo = $posMeiaNoite + $tempoFinEmSegundos; // 2400 + 3000 = 5400. 5400/60 = 90.
+}
+
+
 
 $tempoDeJogoMin = $tempoDeJogo /60; // 90 MINUTOS
 echo "O tempo do jogo é de: {$tempoDeJogoMin} minutos.<br>";

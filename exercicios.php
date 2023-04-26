@@ -201,12 +201,14 @@ for ($numero = 1; $numero <= 30; $numero++) { // 6 somente o 6 perfeito
 
     $somaDivisores = 0;
 
-    for ($divisor = 1; $divisor <= ($numero / 2); $divisor++) 
+    $metadeDoNumeroAvaliado = $numero / 2; // 28 /2 == 14
+
+    for ($divisor = 1; $divisor <= ($metadeDoNumeroAvaliado); $divisor++) 
     {
-        $resto = $numero % $divisor;
+        $resto = $numero % $divisor; //$numero == 28
 
         if ($resto == 0) {
-            $somaDivisores += $divisor;
+            $somaDivisores += $divisor; // 1 + 2 + 4 + 7 + 14
         }
     }
 
