@@ -2,13 +2,33 @@
 
 class PerfisModel extends BaseModel {
 
-    // Crud
-    public function createPerfil($id)
-    {
-        $campos = ['nome', 'descricao'];
-        $dados = ['adm', 'perfil administrador do sistema'];
+    private $nomeTabela = "Perfil_Info";
+    private $camposTabela;
 
-        $idPerfil = $this->Create("perfis", $campos, $dados);
+    public function __construct() {
+        $this->camposTabela = [
+            `id`,
+            `user_id`,
+            `product_id`,
+            `department_id`,
+            `alt_who`,
+            `alt_when`,
+        ];  
+    }
+
+    public function readAllPerfis() {
+        
+        $Perfis = $this->readAll($this->nomeTabela, $this->camposTabela);
+
+        return $Perfis;
+    }
+
+    public function createPerfil($dados)
+    {
+        $campos = ['nome', 'username'];
+        $dados = ['isabel', 'isabel_infoserv'];
+
+        $idPerfil = $this->create($this->nomeTabela, $this->camposTabela, $dados);
 
         return $idPerfil;
     }
