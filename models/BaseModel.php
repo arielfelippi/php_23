@@ -2,11 +2,12 @@
 
 require_once '../conexao/bancoDados.php'; // carrega uma vez (once)
 
-abstract class BaseModel {
+class BaseModel {
     public $conexaoBancoBM;
     
-    public function __construct($conexaoBancoParam = null) {
-        $this->conexaoBancoBM = $conexaoBancoParam;
+    public function __construct() {
+        global $conexaoBanco;
+        $this->conexaoBancoBM = $conexaoBanco;
     }
 
     public function getConexao() {
@@ -17,17 +18,33 @@ abstract class BaseModel {
 
      public function create($nomeTabela, $camposParam = [], $dadosParam = [])
      {
+        $qtdeCampos = count($camposParam);
+        $qtdeDados = count($dadosParam);
+
+        if ($qtdeCampos != $qtdeDados) {
+            throw new Exception("O numero de colunas esta diferente do numero de valores(dados)", 500);
+        }
+
         // INSERT INTO USUARIOS (NOME, USER_NAME) VALUES ('isabel', 'isabel_infoserv');
 
         $campos = implode(", ", $camposParam); // $campos[id, nome, senha] => id, nome, senha;
-        $dados = implode(", ", $dadosParam); // $dados[10, 'gustavo', '456789'] => 10, 'gustavo', '456789';
+        $dados = implode("', '", $dadosParam); // $dados[10, 'gustavo', '456789'] => 10, 'gustavo', '456789';
 
-        $sql = "INSERT INTO '{$nomeTabela}' ('{$campos}') VAL   UES ({$dados}});";
+        $sql = "INSERT INTO {$nomeTabela} ({$campos}) VALUES ('{$dados}');";
 
-        $id = $this->conexaoBancoBM->query($sql)->insert_id;
+        var_dump($sql);
 
-        return $id;
-     }
+        try {
+            $retorno = $this->conexaoBancoBM->query($sql)->insert_id;
+        } catch (Exception $error ) {
+            $msg = "ERRO ao INSERIR codigo: {$error->getCode()} <br> mensagem: {$error->getMessage()}";
+            echo $msg;
+            $retorno = null;
+        }
+
+        echo "retorno: " . $retorno;
+        return $retorno;
+    }
 
      public function read($nomeTabela, $campo, $valor) // editar
      {
@@ -68,7 +85,17 @@ abstract class BaseModel {
 
         */
 
-        $sql = "DELETE FROM '{$nomeTabela}' WHERE '{$campo}' = {$valor};";
+        $sql = "DELETE FROM {$nomeTabela} WHERE {$campo} = '{$valor}';";
+
+        try {
+            $retorno = $this->conexaoBancoBM->query($sql); // null | 0 | undefined.
+        } catch (Exception $error ) {
+            $msg = "ERRO ao DELETAR codigo: {$error->getCode()} <br> mensagem: {$error->getMessage()}";
+            echo $msg;
+            $retorno = null;
+        }
+
+        return $retorno;
      }
 
      public function update($nomeTabela, $camposParam = [], $dadosParam = [], $campoWhere, $valorWhere) {
@@ -90,6 +117,18 @@ abstract class BaseModel {
 
         
         $sql .= "WHERE '{$campoWhere}' = {$valorWhere};";
+
+        try {
+            $retorno = $this->conexaoBancoBM->query($sql); // null | 0 | undefined.
+        } catch (Exception $error ) {
+            $msg = "ERRO ao DELETAR codigo: {$error->getCode()} <br> mensagem: {$error->getMessage()}";
+            echo $msg;
+            $retorno = null;
+        }
+
+        return $retorno;
      }
 
 }
+
+return new BaseModel($conexaoBanco);

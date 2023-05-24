@@ -1,41 +1,51 @@
 <?php
 
+require "./BaseModel.php";
+
 class UsuarioModel extends BaseModel {
 
     private $nomeTabela = "User_Info";
     private $camposTabela;
 
-    public function __construct() {
-        $this->camposTabela = [
-            'user_id',
-            'user_status',
-            'user_fullname',
-            'user_mail',
-            'user_name',
-            'user_pass',
-            'user_rank',
-            'department_id',
-            'log_first',
-            'log_last'
-        ];  
-    }
-
     public function readAllUsuarios() {
-        
-        $usuarios = $this->readAll($this->nomeTabela, $this->camposTabela);
-
-        return $usuarios;
+        return $this->readAll($this->nomeTabela, $this->camposTabela);
     }
 
-    public function createUsuario($dados)
+    public function createUsuario($campos, $dados)
     {
-        $campos = ['nome', 'username'];
-        $dados = ['isabel', 'isabel_infoserv'];
-
-        $idUsuario = $this->create($this->nomeTabela, $this->camposTabela, $dados);
+        $idUsuario = $this->create($this->nomeTabela, $campos, $dados);
 
         return $idUsuario;
     }
+
+    public function deleteUsuarios($campo, $valor)
+    {
+        $excluir = $this->delete($this->nomeTabela, $campo, $valor);
+
+        return $excluir;
+    }
+
 }
 
-$usuario = UsuarioModel();
+$usuario =  new UsuarioModel();
+// echo $usuario->deleteUsuarios("id", 10);
+
+
+$campos = [
+    'user_status',
+	'user_fullname',
+	'user_mail',
+	'user_name',
+	'user_pass',
+];
+
+$dados = [
+    1,
+    'Ariel Felippi',
+    'ariel@infoserv.com',
+    'ariel.infoserv',
+    'qwe123!',
+];
+
+echo $usuario->createUsuario($campos, $dados);
+
