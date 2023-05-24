@@ -30,7 +30,7 @@ class UsuarioModel extends BaseModel {
 $usuario =  new UsuarioModel();
 // echo $usuario->deleteUsuarios("id", 10);
 
-
+// Mock
 $campos = [
     'user_status',
 	'user_fullname',
@@ -41,11 +41,11 @@ $campos = [
 
 $dados = [
     1,
-    'Ariel Felippi',
-    'ariel@infoserv.com',
-    'ariel.infoserv',
+    'felipe',
+    'felipe@infoserv.com',
+    'felipe.infoserv',
     'qwe123!',
 ];
 
-echo $usuario->createUsuario($campos, $dados);
-
+// echo $usuario->createUsuario($campos, $dados);
+// echo $usuario->deleteUsuarios('user_id', '3');
