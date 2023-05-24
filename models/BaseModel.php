@@ -32,8 +32,6 @@ class BaseModel {
 
         $sql = "INSERT INTO {$nomeTabela} ({$campos}) VALUES ('{$dados}');";
 
-        var_dump($sql);
-
         try {
             $retorno = $this->conexaoBancoBM->query($sql)->insert_id;
         } catch (Exception $error ) {
@@ -116,7 +114,35 @@ class BaseModel {
         $sql = "UPDATE '{$nomeTabela}'";
 
         
-        $sql .= "WHERE '{$campoWhere}' = {$valorWhere};";
+        $sql .= "WHERE '{$campoWhere}' = {$valorWhere};"; 
+
+
+        $where = '';
+        // $operador = 'AND';
+
+        // $colunas = [
+        //     'id',
+        //     'name',
+        //     'email',
+        //     'status',
+        // ];
+
+        // for ($i = 0; $i < count($colunas); $i++) {
+        //     $valor = "'{$valores[$i]}'";
+        //     $where .= "{$colunas[$i]} = {$valor} {$operador} "; // aviao = 'boeing' AND
+        // }
+
+        foreach ($colunas as $idx => $coluna) {
+
+            $valor = "'{$valores[$idx]}'";
+            $where .= "{$coluna} = {$valor} {$operador} "; // aviao = 'boeing' AND
+        }
+
+        $where = trim($where);
+        $limite = strlen($where) - 3;
+        $where = trim(substr($where, 0, $limite));
+
+
 
         try {
             $retorno = $this->conexaoBancoBM->query($sql); // null | 0 | undefined.
