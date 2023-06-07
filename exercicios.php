@@ -1,17 +1,24 @@
 <?php
 
-// // Analisa um numero qualquer e vcerifica se é par ou impar.
+// Analisa um numero qualquer e vcerifica se é par ou impar.
 
-// $numero = 4; // um numero qualquer...
+// 4
+$bau = 4; // um numero qualquer...
 
-// // operador MOD (%) pega o resto da divisao.
-// $resto = $numero % 2; // resto da divisao
+// 2 = 4 / 2;
+$resto = $bau / 2; // 2
 
-// if ($resto == 0) {
-//     echo "O {$numero} é par!";
-// } else {
-//     echo "O {$numero} é impar!";
-// }
+// operador MOD (%) pega o resto da divisao.
+// 0 = 4 % 2;
+$resto = $bau % 2; // 0
+
+
+if ($resto == 0) {
+    echo "O {$numero} é par!";
+} else {
+    echo "O {$numero} é impar!";
+}
+
 
 
 
