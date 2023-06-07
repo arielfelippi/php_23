@@ -35,7 +35,7 @@ $cnh_proprietario = 'AB';
 $cnh_validade = '01/02/2024';
 
 
-$ficha_completa = [
+$ficha_tecnica = [
     'pneus' => $pneus, // 4
     'stepePneu' => $stepePneu, //1
     'motor' => $motor,
@@ -55,6 +55,26 @@ $ficha_completa = [
     'numero_chassi' => $numero_chassi,
 ];
 
+$ficha_complementar = [
+    'nome' => $nome,
+    'marca' => $marca,
+    'ano' => $ano,
+    'modelo' => $modelo,
+    'valor' => $valor,
+    'ipva' => $ipva,
+    'multa' => $multa,
+    'seguro' => $seguro,
+];
+
+$ficha_proprietario = [
+    'proprietario' => $proprietario,
+    'cnh_proprietario' => $cnh_proprietario,
+    'cnh_validade' => $cnh_validade,
+];
+
+$ficha_completa = array_merge($ficha_complementar, $ficha_tecnica);
+
+
 echo "<b>Ficha completa:</b><br>";
 
 foreach ($ficha_completa as $descricao => $componente) {
@@ -64,19 +84,31 @@ foreach ($ficha_completa as $descricao => $componente) {
 
 
 
+echo "<br><b>Proprietario:</b><br>";
+foreach ($ficha_proprietario as $descricao => $componente) {
+    echo $descricao . ": " . $componente . '<br>'; // freio: ABS
+}
 
 
 
+$limiteManutencao = 10;
+
+$kmInicial = 10;
+$kmFinal = 20;
 
 
+$ficha_manutencao = [
+    'kmInicial' => $kmInicial,
+    'kmFinal' => $kmFinal,
+];
 
+$diferencaKM = ($ficha_manutencao['kmFinal'] - $ficha_manutencao['kmInicial']);
+$fazer_manutencao = $diferencaKM >= $limiteManutencao; // True|False
 
-
-
-
-
-
-
+if ($fazer_manutencao) {
+    echo "<br><b>*Fazer manutenção, passou do limite de {$limiteManutencao} km.</b><br>"; // 15 km.
+    
+}
 
 
 
